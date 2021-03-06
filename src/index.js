@@ -31,6 +31,19 @@ function* fetchAllMovies() {
         
 }
 
+function* fetchSingleMovie(action) {
+  // get one movie from the DB
+  try {
+      const singleMovie = yield axios.get(`/api/movie/${action.payload}`);
+      console.log('get single movie:', singleMovie.data);
+      yield put({ type: 'SET_MOVIE_DETAILS', payload: singleMovie.data[0] });
+
+  } catch {
+      console.log('get all error');
+  }
+      
+} // end fetchSingleMovie
+
 function* addNewMovie(action) {
   console.log('action.payload', action.payload);
   // add a new movie to the DB
@@ -44,19 +57,6 @@ function* addNewMovie(action) {
     console.log('Error in Saga POST', err);
   }
 } // end addNewMovie
-
-function* fetchSingleMovie(action) {
-  // get one movie from the DB
-  try {
-      const singleMovie = yield axios.get(`/api/movie/${action.payload}`);
-      console.log('get single movie:', singleMovie.data);
-      yield put({ type: 'SET_MOVIE_DETAILS', payload: singleMovie.data[0] });
-
-  } catch {
-      console.log('get all error');
-  }
-      
-} // end fetchSingleMovie
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();

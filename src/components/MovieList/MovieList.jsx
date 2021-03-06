@@ -23,9 +23,14 @@ function MovieList() {
       type: 'FETCH_SINGLE_MOVIE',
       payload: movieId 
     });
-    history.push('/details')
+    toDetailsPage(movieId);
   }
 
+  const toDetailsPage = (movieId) => {
+    history.push(`/details/${movieId}`)
+  }
+
+  // <Button component="Link" to="/addmovie" <-- to use a button as a link
     return (
         <main>
             <h1>MovieList</h1>
