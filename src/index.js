@@ -15,6 +15,7 @@ import axios from 'axios';
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
     yield takeEvery('ADD_NEW_MOVIE', addNewMovie)
+    yield takeEvery('FETCH_SINGLE_MOVIE', fetchSingleMovie)
 }
 
 function* fetchAllMovies() {
@@ -44,8 +45,31 @@ function* addNewMovie(action) {
   }
 } // end addNewMovie
 
+function* fetchSingleMovie() {
+  // get one movie from the DB
+  try {
+      const movies = yield axios.get('/api/movie/');
+      console.log('get all:', movies.data);
+      yield put({ type: 'SET_MOVIES', payload: movies.data });
+
+  } catch {
+      console.log('get all error');
+  }
+      
+} // end fetchSingleMovie
+
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
+
+// Used to store a single movie's details
+const movieDetails = (state = {}, action) => {
+  switch (action.type) {
+    case 'SET_MOVIE_DETAILS':
+      return action.payload;
+    default:
+      return state;
+  }
+}
 
 // Used to store movies returned from the server
 const movies = (state = [], action) => {
