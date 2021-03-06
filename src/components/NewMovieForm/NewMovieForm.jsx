@@ -1,8 +1,10 @@
-import React, {useState}from 'react';
+import React, {useState} from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 function NewMovieForm() {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   // local state to store new movie info
   const [newMovieData, setNewMovieData] = useState(
@@ -38,6 +40,24 @@ function NewMovieForm() {
       type: 'ADD_NEW_MOVIE',
       payload: newMovieData
     })
+    history.push('/');
+    setNewMovieData({
+      title: '', 
+      poster: '', 
+      description: '', 
+      genre: ''
+    });
+  }
+
+  // handle Cancel Button Click
+  const handleCancel = () => {
+    history.push('/');
+    setNewMovieData({
+      title: '', 
+      poster: '', 
+      description: '', 
+      genre: ''
+    }); 
   }
 
   return (
@@ -95,7 +115,7 @@ function NewMovieForm() {
         <input type="submit" value="Submit"/>
       </form>
       {/* Cancel button to go back home */}
-      <button>Cancel</button>
+      <button onClick={handleCancel}>Cancel</button>
     </div>
   )
 }
