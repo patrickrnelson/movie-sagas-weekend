@@ -45,12 +45,12 @@ function* addNewMovie(action) {
   }
 } // end addNewMovie
 
-function* fetchSingleMovie() {
+function* fetchSingleMovie(action) {
   // get one movie from the DB
   try {
-      const movies = yield axios.get('/api/movie/');
-      console.log('get all:', movies.data);
-      yield put({ type: 'SET_MOVIES', payload: movies.data });
+      const singleMovie = yield axios.get(`/api/movie/${action.payload}`);
+      console.log('get single movie:', singleMovie.data);
+      yield put({ type: 'SET_MOVIE_DETAILS', payload: singleMovie.data[0] });
 
   } catch {
       console.log('get all error');
@@ -96,6 +96,7 @@ const storeInstance = createStore(
     combineReducers({
         movies,
         genres,
+        movieDetails
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),

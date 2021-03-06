@@ -3,17 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function MovieDetails() {
 
-  // on load, grab the single movie details from DB
-  useEffect(() => {
-    dispatch({ 
-      type: 'FETCH_MOVIES',
-      payload: '' 
-    });
-}, []);
-
+  // grab the single movie details from redux store
+  const movieDetails = useSelector(store => store.movieDetails);
+  
   return (
-    <>
-    </>
+    <div>
+      <h3>Details View</h3>
+      <h4>Title: {movieDetails.title}</h4>
+    </div>
   )
 }
 

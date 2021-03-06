@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool')
 
+// GET all movies
 router.get('/', (req, res) => {
 
   const query = `SELECT * FROM movies ORDER BY "title" ASC`;
@@ -16,10 +17,12 @@ router.get('/', (req, res) => {
 
 });
 
+// GET single movie details
 router.get('/:id', (req, res) => {
-
-  const query = `SELECT * FROM movies ORDER BY "title" ASC`;
-  pool.query(query)
+  console.log('req.params', req.params);
+  const query = `SELECT "movies".title FROM "movies" 
+                WHERE "movies".id = $1`;
+  pool.query(query, [req.params.id])
     .then( result => {
       res.send(result.rows);
     })
