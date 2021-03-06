@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import './MovieDetails.css'
 
 function MovieDetails() {
   const history = useHistory();
@@ -12,19 +13,19 @@ function MovieDetails() {
   let movieGenres = movieDetails.all_genres || [];
 
   return (
-    <div>
-      <h3>Details View</h3>
-      <h4 className="movie-detail-title">Title: {movieDetails.title}</h4>
-      <p>Genres:</p>
-      <ul>
+    <div className="details-container">
+      <h2 className="movie-detail-title">{movieDetails.title}</h2>
+      <ul id="genre-list">
         {movieGenres.map((genre) => {
           return (
           <li>{genre}</li>
           )
         })}
       </ul>
-      <img src={movieDetails.poster} />
-      <p>{movieDetails.description}</p>
+      <img className="detail-image" src={movieDetails.poster} />
+      <div className="description-container">
+        <p className="description-text">{movieDetails.description}</p>
+      </div>
       <button onClick={() => history.push('/')}>Back To List</button>
     </div>
   )
