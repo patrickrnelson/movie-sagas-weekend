@@ -62,7 +62,7 @@ function NewMovieForm() {
 
   return (
     <div>
-      <h3>Add a New Movie</h3>
+      <h2>Add a New Movie</h2>
       <form onSubmit={handleFormSubmit}>
         {/* FORM INPUTS */}
 

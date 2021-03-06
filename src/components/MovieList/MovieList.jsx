@@ -30,10 +30,10 @@ function MovieList() {
     history.push(`/details/${movieId}`)
   }
 
-  // <Button component="Link" to="/addmovie" <-- to use a button as a link
+  
     return (
         <main>
-            <h1>MovieList</h1>
+            <h2>Movie List</h2>
             <section className="movies">
                 {movies.map(movie => {
                     return (

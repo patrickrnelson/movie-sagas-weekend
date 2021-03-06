@@ -1,14 +1,27 @@
 .movies {
     display : flex;
     flex-wrap: wrap;
+    justify-content: center;
+
 }
 
 .movie-image-div {
-  width: 200px;
+  width: 300px;
+  border: 1px solid black;
+  margin: 30px;
+  border-radius: 3px;
+}
+
+.movie-image-div:hover {
+  box-shadow: gray 10px 10px 5px;
+}
+
+.movie-image-div:active {
+  box-shadow: gray 0px 0px 0px;
 }
 
 img {
-  max-width: 100%;
+  max-width: 175px;
   max-height: 100%;
   margin-top: 30px;
 }

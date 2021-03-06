@@ -25,7 +25,12 @@
 
 #header-container {
   background-color: bisque;
-  height: 80px;
+  height: 90px;
   margin: 0;
   
+}
+
+#app-title {
+  margin: 0;
+  padding-top: 10px;
 }
