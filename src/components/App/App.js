@@ -9,6 +9,7 @@ function App() {
   return (
     <div className="App">
       <Router>   
+        {/* Header */}
         <Header />
         {/* Homepage */}
         <Route path="/" exact>

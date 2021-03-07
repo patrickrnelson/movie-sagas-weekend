@@ -13,7 +13,7 @@
 }
 
 .movie-image-div:hover {
-  box-shadow: rgb(187, 187, 187) 10px 10px 5px;
+  box-shadow: #636B61 10px 10px 5px;
   cursor: pointer;
 }
 

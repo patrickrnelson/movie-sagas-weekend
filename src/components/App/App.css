@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+ ;
 }
 
 
@@ -12,6 +13,7 @@
 
 .App-title {
   font-size: 1.5em;
+  
 }
 
 .App-intro {
@@ -24,13 +26,13 @@
 }
 
 #header-container {
-  background-color: bisque;
-  height: 100px;
+  background-color: #66A182;
+  height: 115px;
   margin-bottom: 20px;
   
 }
 
 #app-title {
   margin: 0;
-  padding-top: 10px;
+  padding-top: 20px;
 }
