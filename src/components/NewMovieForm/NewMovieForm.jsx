@@ -1,6 +1,15 @@
 import React, {useState} from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import './NewMovieForm.css'
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+
 
 function NewMovieForm() {
   const dispatch = useDispatch();
@@ -63,59 +72,83 @@ function NewMovieForm() {
   return (
     <div>
       <h2>Add a New Movie</h2>
-      <form onSubmit={handleFormSubmit}>
-        {/* FORM INPUTS */}
+      <div id="form-container">
+        <form onSubmit={handleFormSubmit}>
+          {/* FORM INPUTS */}
 
-        {/* Title Input */}
-        <label>Movie Title:
-          <input 
-          type="text" 
-          value={newMovieData.title} 
-          onChange={titleChange} />
-        </label>
-
-        {/* Poster URL Input */}
-        <label>Movie Poster (URL):
-          <input 
-          type="text"
-          value={newMovieData.poster} 
-          onChange={posterChange} />
-        </label>
-
-        {/* Description Input */}
-        <label>Movie Description:
-          <textarea
-          value={newMovieData.description} 
-          onChange={descriptionChange} />
-        </label>
-
-        {/* Dropdown for genre selector */}
-        <label>Genre:
-          <select name="genres" 
-              value={newMovieData.genre} 
-              onChange={genreChange}>
-            <option value="">--Choose A Genre--</option>
-            <option value="Adventure">Adventure</option>
-            <option value="Animated">Animated</option>
-            <option value="Biographical">Biographical</option>
-            <option value="Comedy">Comedy</option>
-            <option value="Disaster">Disaster</option>
-            <option value="Drama">Drama</option>
-            <option value="Epic">Epic</option>
-            <option value="Fantasy">Fantasy</option>
-            <option value="Musical">Musical</option>
-            <option value="Romantic">Romantic</option>
-            <option value="Science Fiction">Science Fiction</option>
-            <option value="Space-Opera">Space-Opera</option>
-            <option value="Superhero">Superhero</option>
-          </select>
-        </label>
-        <br/>
-        {/* Submit Button */}
-        <input type="submit" value="Submit"/>
-      </form>
-      {/* Cancel button to go back home */}
-      <button onClick={handleCancel}>Cancel</button>
+          {/* Title Input */}
+          <Box m={1} p={1}>
+            <TextField
+            style={{width: 350}}
+            label="Movie Title" 
+            variant="outlined"
+            type="text" 
+            value={newMovieData.title} 
+            onChange={titleChange} />
+          </Box>
+          {/* Poster URL Input */}
+          <Box m={1} p={1}>
+            <TextField 
+            style={{width: 350}}
+            label="Movie Poster URL" 
+            variant="outlined"
+            type="text"
+            value={newMovieData.poster} 
+            onChange={posterChange} />
+          </Box>
+          {/* Description Input */}
+          <Box  m={1} p={1}>
+            <TextField
+            style={{width: 350}}
+            multiline
+            rows={5}
+            variant="outlined"
+            label="Description"
+            defaultValue="Get Out was released in 2017"
+            value={newMovieData.description} 
+            onChange={descriptionChange} />
+          </Box >
+          {/* Dropdown for genre selector */}
+          <FormControl style={{minWidth: 200}} variant="outlined">
+            <InputLabel id="genreList">Genre:</InputLabel>
+              <Select 
+                  name="genres" 
+                  value={newMovieData.genre} 
+                  onChange={genreChange}
+                  label="Genre"
+                  labelId="genreList"
+                  >
+                <MenuItem value=""><em>--Choose A Genre--</em></MenuItem>
+                <MenuItem value="Adventure">Adventure</MenuItem>
+                <MenuItem value="Animated">Animated</MenuItem>
+                <MenuItem value="Biographical">Biographical</MenuItem>
+                <MenuItem value="Comedy">Comedy</MenuItem>
+                <MenuItem value="Disaster">Disaster</MenuItem>
+                <MenuItem value="Drama">Drama</MenuItem>
+                <MenuItem value="Epic">Epic</MenuItem>
+                <MenuItem value="Fantasy">Fantasy</MenuItem>
+                <MenuItem value="Musical">Musical</MenuItem>
+                <MenuItem value="Romantic">Romantic</MenuItem>
+                <MenuItem value="Science Fiction">Science Fiction</MenuItem>
+                <MenuItem value="Space-Opera">Space-Opera</MenuItem>
+                <MenuItem value="Superhero">Superhero</MenuItem>
+              </Select>
+            
+          </FormControl>
+          <br/>
+          {/* Submit Button */}
+          <div id="form-buttons">
+            <Box m={1}>
+              <Button type="submit" variant="contained" color="Primary">Submit</Button>
+            </Box>
+            <Box m={1}>
+              <Button color="secondary" onClick={handleCancel}>Cancel</Button>
+            </Box>
+          </div>
+        </form>
+        {/* Cancel button to go back home */}
+        
+      </div>
     </div>
   )
 }
