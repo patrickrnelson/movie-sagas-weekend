@@ -10,17 +10,17 @@ import AddBoxIcon from '@material-ui/icons/AddBox';
 function Header() {
   const history = useHistory();
 
-  // local state to control nav button colors
-  const [homeColor, setHomeColor] = useState("default");
-  const [addColor, setAddColor] = useState("default");
+  // // local state to control nav button colors
+  // const [homeColor, setHomeColor] = useState("default");
+  // const [addColor, setAddColor] = useState("default");
 
-  let { id } = useParams();
-  if(id === "addmovie") {
+  // let { id } = useParams();
+  // if(id === "addmovie") {
     
-    setAddColor("primary");
-  }
+  //   setAddColor("primary");
+  // }
 
-  console.log('id', id);
+  // console.log('id', id);
 
   // const homeClick = () => {
   //   setHomeColor("primary");
@@ -38,11 +38,11 @@ function Header() {
       <h1 id="app-title">The Movies Saga</h1>
       
       <Box m={1}>
-        <Button component={ Link } to="/" color={homeColor} >
+        <Button component={ Link } to="/" >
           <HomeIcon />Home
         </Button>
       
-        <Button component={ Link } to="/addmovie" color={addColor} >
+        <Button component={ Link } to="/addmovie" >
           <AddBoxIcon />Add Movie
         </Button>
       </Box>
