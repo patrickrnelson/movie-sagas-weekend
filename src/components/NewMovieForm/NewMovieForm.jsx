@@ -104,7 +104,6 @@ function NewMovieForm() {
             rows={5}
             variant="outlined"
             label="Description"
-            defaultValue="Get Out was released in 2017"
             value={newMovieData.description} 
             onChange={descriptionChange} />
           </Box >

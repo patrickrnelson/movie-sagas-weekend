@@ -7,12 +7,12 @@ import Button from '@material-ui/core/Button';
 
 function MovieDetails() {
   const history = useHistory();
-
+  
   // mat ui back button style
   const style = {
     margin: 0,
     bottom: 'auto',
-    left: 50,
+    left: 47,
     top: 125,
     right: 'auto',
     position: 'absolute',
@@ -27,7 +27,7 @@ function MovieDetails() {
   return (
     <>
     <Button component={ Link } to="/" color="primary" style={style}>
-      <ArrowBackIcon />  Back Home
+      <ArrowBackIcon />  Back To List
     </Button>
     <div className="details-container">
       <h2 className="movie-detail-title">{movieDetails.title}</h2>
