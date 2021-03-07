@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 
 function MovieDetails() {
   const history = useHistory();
+  const dispatch = useDispatch();
   
   // mat ui back button style
   const style = {
@@ -21,12 +22,22 @@ function MovieDetails() {
   // grab the single movie details from redux store
   const movieDetails = useSelector(store => store.movieDetails);
   
+  // so the map function has something to start with if movieDetails isn't ready
   // Tried local state, but couldn't get it to work
   let movieGenres = movieDetails.all_genres || [];
 
+  // on 'back to to list' click,
+  // clear the details reducer
+  // so that the next movie clicked doesn't load weird
+  const clearDetailsReducer = () => {
+    dispatch ({
+      type: 'CLEAR_DETAILS'
+    })
+  }
+
   return (
     <>
-    <Button component={ Link } to="/" color="primary" style={style}>
+    <Button component={ Link } to="/" color="primary" style={style} onClick={clearDetailsReducer}>
       <ArrowBackIcon />  Back To List
     </Button>
     <div className="details-container">
