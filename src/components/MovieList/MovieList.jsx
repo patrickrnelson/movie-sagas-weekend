@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import './MovieList.css'
-import MovieDetails from '../MovieDetails/MovieDetails';
 
 function MovieList() {
     const dispatch = useDispatch();
@@ -11,20 +10,23 @@ function MovieList() {
     // grab all movies from redux store
     const movies = useSelector(store => store.movies);
 
+    // on load, fetch movies from the DB
     useEffect(() => {
         dispatch({ type: 'FETCH_MOVIES' });
     }, []);
 
   // on image click, grab the single movie details from DB
-  // store data in redux
+  // store data in redux so we can use in the MovieDetailsPage
   const handleImageClick = (movieId) => {
     console.log('handleImageClick');
     dispatch({ 
       type: 'FETCH_SINGLE_MOVIE',
       payload: movieId 
     });
+    // on image click, direct user to a details page
     toDetailsPage(movieId);
   }
+
 
   const toDetailsPage = (movieId) => {
     history.push(`/details/${movieId}`)
@@ -34,6 +36,7 @@ function MovieList() {
     return (
         <main>
             <section className="movies">
+              {/* map through the movies date from redux store */}
                 {movies.map(movie => {
                     return (
                         <div 

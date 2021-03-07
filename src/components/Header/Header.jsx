@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
-import { useHistory, Link, useParams } from 'react-router-dom';
+import React from 'react';
+import { useHistory, Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import HomeIcon from '@material-ui/icons/Home';
