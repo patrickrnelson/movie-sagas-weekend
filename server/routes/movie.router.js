@@ -21,12 +21,13 @@ router.get('/:id', (req, res) => {
   const query = `SELECT "movies".title, 
                         "movies".poster,
                         "movies".description, 
+                        "movies".id,
                         ARRAY_AGG ("genres".name) as "all_genres"
                 FROM "movies"
                 JOIN "movies_genres" ON "movies".id = "movies_genres".movie_id
                 JOIN "genres" ON "genres".id = "movies_genres".genre_id
                 WHERE "movies".id = $1
-                GROUP BY "movies".title, "movies".poster, "movies".description`;
+                GROUP BY "movies".title, "movies".poster, "movies".description, "movies".id`;
   pool.query(query, [req.params.id])
     .then( result => {
       res.send(result.rows);
@@ -38,6 +39,7 @@ router.get('/:id', (req, res) => {
 
 });
 
+// POST new movie
 router.post('/', (req, res) => {
   console.log(req.body);
   // RETURNING "id" will give us back the id of the created movie
@@ -76,6 +78,20 @@ router.post('/', (req, res) => {
     console.log(err);
     res.sendStatus(500)
   })
+})
+
+router.delete('/:id', (req, res) => {
+  console.log('req.params', req.params);
+  const query = `DELETE FROM "movies"
+                WHERE "movies".id = $1;`
+  pool.query(query, [req.params.id])
+    .then( result => {
+      res.sendStatus(201)
+    })
+    .catch(err => {
+      console.log('ERROR: Delete movie', err);
+      res.sendStatus(500)
+    })
 })
 
 module.exports = router;

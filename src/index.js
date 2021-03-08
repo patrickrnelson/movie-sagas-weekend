@@ -16,6 +16,7 @@ function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
     yield takeEvery('ADD_NEW_MOVIE', addNewMovie)
     yield takeEvery('FETCH_SINGLE_MOVIE', fetchSingleMovie)
+    yield takeEvery('DELETE_MOVIE', deleteMovie)
 }
 
 function* fetchAllMovies() {
@@ -57,6 +58,18 @@ function* addNewMovie(action) {
     console.log('Error in Saga POST', err);
   }
 } // end addNewMovie
+
+function* deleteMovie(action) {
+  try {
+    yield axios.delete(`api/movie/${action.payload}`)
+    yield put({ 
+      type: 'FETCH_MOVIES'
+    })
+  }
+  catch (err) {
+    console.log('Error in Saga Delete', err);
+  }
+}
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
