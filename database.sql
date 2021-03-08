@@ -20,8 +20,16 @@ CREATE TABLE "genres" (
 -- This is many-to-many!
 CREATE TABLE "movies_genres" (
   "id" SERIAL PRIMARY KEY,
-  "movie_id" INT REFERENCES "movies" NOT NULL,
-  "genre_id" INT REFERENCES "genres" NOT NULL
+  "movie_id" INT  NOT NULL,
+  "genre_id" INT  NOT NULL,
+  CONSTRAINT fk_movie_id
+    FOREIGN KEY (movie_id)
+    REFERENCES movies (id)
+    ON DELETE CASCADE,
+  CONSTRAINT fk_genre_id
+    FOREIGN KEY (genre_id)
+    REFERENCES genres (id)
+    ON DELETE CASCADE
 );
 
 --------[ DATA! ]---------
